@@ -10,10 +10,10 @@ function App() {
 
     useEffect(() => {
         // Dynamically change the theme color
-        const metaThemeColor = document.querySelector("meta[name=theme-color]");
-        metaThemeColor.setAttribute("content", "#ffffff");
+        const metaAppleStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
+        metaAppleStatusBar.setAttribute("content", "black"); // Change "black" to your desired color
       }, []);
-      
+
   return (
     <>
       <NavBar />
