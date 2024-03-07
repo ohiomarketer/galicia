@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import eye from "../assets/images/eye.png";
 import transactions from "../assets/images/transactions.jpg";
 import uppart from "../assets/images/uppart.jpg";
 import uppart2 from "../assets/images/uppart2.jpg";
 import downpart from "../assets/images/downpart.jpg";
+import error from "../assets/images/error.jpg";
 import styled from "styled-components";
 
 export const ProfileData = () => {
   const [transferOptions, setTransferOptions] = useState(false);
   const [transferSection, setTransferSection] = useState(false);
+  const [errorSection, setErrorSection] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const openTransferOptions = () => {
     setTransferOptions(!transferOptions);
-  }
+  };
 
   const openTransferSection = () => {
     setTransferSection(!transferSection);
-  }
+  };
+
+  const openErrorContainer = () => {
+    setLoading(false);
+    setTimeout(() => {
+      setErrorSection(!errorSection);
+      setLoading(true);
+    }, 500);
+  };
+  
+  useEffect(() => {
+    setLoading(true);
+  }, [])
 
   return (
     <section className="profile__data">
@@ -35,7 +50,6 @@ export const ProfileData = () => {
       <div className="options__container" onClick={openTransferOptions}>
         <img src={transactions} alt="" />
       </div>
-      {/* toggle transferOptions classname active */}
       <TransferOptions className={transferOptions ? "active" : ""}>
         <UpPart onClick={openTransferOptions}>
           <img src={uppart} alt="" />
@@ -45,14 +59,20 @@ export const ProfileData = () => {
         </DownPart>
         <TransferSection className={transferSection ? "active" : ""}>
           <UpPart onClick={openTransferSection}>
-            <img src={uppart2} alt=""  style={{
-              width: "93%"
-            }}/>
-          </UpPart> 
+            <img src={uppart2} alt="" />
+          </UpPart>
           <InputContainer>
-            <input type="text" placeholder="Alias, CBU o CVU" />
-            <button>Continuar</button>
+            <input type="text" placeholder="Alias, CBU o CVU" maxLength="22" />
+            <button onClick={openErrorContainer}>Continuar</button>
           </InputContainer>
+            <LoaderContainer className={loading ? '' : 'active'}>
+              <div className="loading"></div>
+            </LoaderContainer>
+            <ErrorContainer className={errorSection ? "" : "active"}>
+              <ErrorImageContainer>
+                <img src={error} alt="" onClick={openErrorContainer} />
+              </ErrorImageContainer>
+            </ErrorContainer>
         </TransferSection>
       </TransferOptions>
     </section>
@@ -75,27 +95,27 @@ const TransferOptions = styled.section`
 `;
 
 const UpPart = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 20px;
-margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
 
-img {
+  img {
     width: 100%;
-}
+  }
 `;
 
 const DownPart = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 0px;
-margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
-img {
+  img {
     width: 100%;
-}
+  }
 `;
 
 const TransferSection = styled.section`
@@ -129,6 +149,11 @@ const InputContainer = styled.div`
     &:focus {
       outline: none;
     }
+
+    &::placeholder {
+      color: #aaa;
+      font-size: 1rem;
+    }
   }
 
   button {
@@ -136,8 +161,54 @@ const InputContainer = styled.div`
     background-color: #8950f7;
     color: #fff;
     border: none;
-    padding: 10px;
+    padding: 14px;
     cursor: pointer;
+    font-size: 1rem;
     border-radius: 5px;
+  }
+`;
+
+const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: none;
+  z-index: 101;
+  transition: all 0.3s ease;
+  opacity: 0;
+
+  &.active {
+    display: block;
+    opacity: 0.2;
+  }
+`;
+
+const ErrorContainer = styled.section`
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 101;
+  transition: all 0.3s ease;
+
+  &.active {
+    right: 0;
+  }
+`;
+
+const ErrorImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+
+  img {
+    width: 100%;
   }
 `;
