@@ -11,6 +11,9 @@ html {
 body {
   font-family: "Inter", sans-serif;
   background-color: #f6f6f6;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
 }
 
 .header {
