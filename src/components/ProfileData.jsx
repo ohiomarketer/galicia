@@ -70,6 +70,9 @@ export const ProfileData = () => {
               <ErrorImageContainer>
                 <img src={error} alt="" onClick={openErrorContainer} />
               </ErrorImageContainer>
+              <TextContainer>
+                <p>En este momento no podemos realizar la operación seleccionada. Por favor, intentalo más tarde.</p>
+              </TextContainer>
             </ErrorContainer>
         </TransferSection>
       </TransferOptions>
@@ -208,5 +211,16 @@ const ErrorImageContainer = styled.div`
 
   img {
     width: 100%;
+  }
+`;
+
+const TextContainer = styled.div`
+  margin-top: 20px;
+  padding: 0 80px;
+  p {
+    text-align: center;
+    line-height: 1.3;
+    opacity: 0.8;
+    font-size: 1rem;
   }
 `;
