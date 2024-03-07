@@ -5,17 +5,17 @@ import { ProfileData } from "./components/ProfileData";
 import { Support } from "./components/Support";
 import { Transactions } from "./components/Transactions";
 
-function App () {
-    return (
-        <>
-            <NavBar />
-            <ProfileData />
-            <Transactions />
-            <Support />
-            <Extras />
-            <Footer />
-        </>
-    );
+function App() {
+  return (
+    <>
+      <NavBar />
+      <ProfileData />
+      <Transactions />
+      <Support />
+      <Extras />
+      <Footer />
+    </>
+  );
 }
 
 export default App;

@@ -11,7 +11,7 @@ export const ProfileData = () => {
   const [transferOptions, setTransferOptions] = useState(false);
   const [transferSection, setTransferSection] = useState(false);
   const [errorSection, setErrorSection] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const openTransferOptions = () => {
     setTransferOptions(!transferOptions);
@@ -29,9 +29,7 @@ export const ProfileData = () => {
     }, 500);
   };
   
-  useEffect(() => {
-    setLoading(true);
-  }, [])
+
 
   return (
     <section className="profile__data">
@@ -68,7 +66,7 @@ export const ProfileData = () => {
             <LoaderContainer className={loading ? '' : 'active'}>
               <div className="loading"></div>
             </LoaderContainer>
-            <ErrorContainer className={errorSection ? "" : "active"}>
+            <ErrorContainer className={errorSection ? "active" : ""}>
               <ErrorImageContainer>
                 <img src={error} alt="" onClick={openErrorContainer} />
               </ErrorImageContainer>
