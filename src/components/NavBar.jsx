@@ -7,7 +7,7 @@ export const NavBar = () => {
     <header className="header">
       <div className="logo__container">
         <img src={logo} alt="" className="logo" />
-        <p className="name">Santiago Bestoso</p>
+        <p className="name">Povolo Natanael</p>
       </div>
 
       <div className="notifications__container" style={{
