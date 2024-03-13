@@ -37,7 +37,7 @@ export const ProfileData = () => {
         <div className="account__balance">
           <p className="account">CA $1890-9</p>
           <p className="balance">
-            $4,982,750
+            $3,923,370
             <span className="pennys">56</span>
           </p>
         </div>
